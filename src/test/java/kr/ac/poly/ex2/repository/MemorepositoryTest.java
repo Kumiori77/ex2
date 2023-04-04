@@ -202,5 +202,31 @@ public class MemorepositoryTest {
         result.get().forEach(memo -> System.out.println(memo));
     }
 
+    @Test
+    public void testGetListWithQueryObject() {
+        Pageable pageable = PageRequest.of(0, 10);
+
+        Page<Object[]> result = memoRepository.getListWithQueryObject(80L, pageable);
+
+        for (Object[] obj : result){
+            System.out.println(obj[0] + "\t" + obj[1] +"\t" + obj[2]);
+        }
+
+//        result.get().forEach(obj -> System.out.println(obj[0] + "\t" + obj[1] + "\t" + obj[2]));
+
+    }
+
+    @Test
+    public void testGetNativeResult() {
+        List<Memo> result = memoRepository.getNativeResult();
+//        List<Object[]> result = memoRepository.getNativeResult();
+
+        for (Memo memo : result) {
+//            System.out.println(obj[0] + "\t" + obj[1]);
+            System.out.println(memo);
+        }
+    }
+
+
 
 }
